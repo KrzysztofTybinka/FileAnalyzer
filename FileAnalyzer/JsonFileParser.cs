@@ -18,7 +18,20 @@ namespace FileAnalyzer
 
         public string GetFile(string path)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string jsonString;
+                using (StreamReader reader = new StreamReader(path))
+                {
+                    jsonString = reader.ReadToEnd();
+                }
+
+                return jsonString;
+            }
+            catch (Exception)
+            {
+                throw new FileNotFoundException(path);
+            }
         }
 
         public List<string> ParseFile(string attribute)
