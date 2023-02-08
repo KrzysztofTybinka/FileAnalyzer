@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 
 namespace FileAnalyzer
@@ -34,9 +36,35 @@ namespace FileAnalyzer
             }
         }
 
-        public List<string> ParseFile(string attribute)
+        public List<string> ParseFile(string path)
         {
-            throw new NotImplementedException();
+            JObject json = JObject.Parse(_content);
+            var attributes = path.Split('.');
+            string builder = "";
+
+            var x = json.SelectTokens("$.?@.age > 30");
+
+            for (int i = 0; i < attributes.Length; i++)
+            {
+                JToken? token = (json.SelectToken(attributes[i]));
+
+                if (token is null)
+                {
+                    throw new NullReferenceException();
+                }
+                if (token is JArray)
+                {
+                    builder += attributes[i] + "[*]";
+                }
+                if (token is JObject)
+                {
+                    builder += attributes[i];
+                }
+            }
+
+            return json.SelectTokens(builder).Select(t => t.ToString()).ToList();
+
         }
+
     }
 }

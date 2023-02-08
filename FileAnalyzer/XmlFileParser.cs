@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace FileAnalyzer
 {
@@ -17,7 +18,18 @@ namespace FileAnalyzer
 
         public string GetFile(string path)
         {
-            throw new NotImplementedException();
+            try
+            {
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(path);
+                string xmlString = xmlDoc.OuterXml;
+
+                return xmlString;
+            }
+            catch (Exception)
+            {
+                throw new FileNotFoundException(path);
+            }
         }
 
         public List<string> ParseFile(string attribute)

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "8HGVl6EBQvJ91UwxVRo3ZPLJXrfYLbGndEoKgxHxTBJ2JzwI9EO+xgWrp4l46jsdXtqgm39K65+a0As8ZL8a0w==",
+  "dgSpecHash": "DOTXo8Qk+GXuHLU0MQTOsvC8lP0zr67C8ORckmu1xqfU2IKTsA6YwtEYX/nhectJc/TZNrxgecL0AEAY/bl6lQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\krzys\\source\\repos\\FileAnalyzer\\FileAnalyzer\\FileAnalyzer.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\krzys\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512"
+  ],
   "logs": []
 }
