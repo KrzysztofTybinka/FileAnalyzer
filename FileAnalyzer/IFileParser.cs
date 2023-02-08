@@ -8,6 +8,7 @@ namespace FileAnalyzer
 {
     public interface IFileParser
     {
-        List<string> ParseFile(string filePath, string attribute);
+        public string GetFile(string path);
+        public List<string> ParseFile(string attribute);
     }
 }

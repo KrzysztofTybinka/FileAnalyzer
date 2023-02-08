@@ -6,7 +6,23 @@ using System.Threading.Tasks;
 
 namespace FileAnalyzer
 {
-    internal class XmlFileParser
+    public class XmlFileParser : IFileParser
     {
+        private readonly string _content;
+
+        public XmlFileParser(string path)
+        {
+            _content = GetFile(path);
+        }
+
+        public string GetFile(string path)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<string> ParseFile(string attribute)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
