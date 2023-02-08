@@ -12,17 +12,23 @@ namespace FileAnalyzer
     {
         public List<string> Interpret(string input)
         {
-            string[] args = input.Split(' ');
-            string attribute = args[0];
-            string method = args[1];
-            string value = args[2];
-            string path = args[3];
-            string fileType = path.Split('.').Last();
-            IFileParser file = GetParser(fileType, path);
-            FileService service = new FileService(file);
+            try
+            {
+                string[] args = input.Split(' ');
+                string attribute = args[0];
+                string method = args[1];
+                string value = args[2];
+                string path = args[3];
+                string fileType = path.Split('.').Last();
+                IFileParser file = GetParser(fileType, path);
+                FileService service = new FileService(file);
 
-            return Call(attribute, method, value, service);
-
+                return Call(attribute, method, value, service);
+            }
+            catch (Exception)
+            {
+                throw new InvalidOperationException();
+            }
         }
 
         private List<string> Call(string attribute, string method, string value, FileService service)
