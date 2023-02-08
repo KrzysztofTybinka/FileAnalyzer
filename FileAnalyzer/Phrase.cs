@@ -16,35 +16,40 @@ namespace FileAnalyzer
             string value = args[1];
             string path = args[2];
             string fileType = path.Split('.').Last();
-            IFileParser file;
+            IFileParser file = FileType(fileType, path);
 
+            FileService service = new FileService(file);
+
+            if (method.EndsWith("-gt"))
+            {
+
+            }
+            else if (method.EndsWith("-st"))
+            {
+
+            }
+            else if (method.EndsWith("="))
+            {
+
+            }
+            else
+            {
+                throw new InvalidOperationException();
+            }
+        }
+
+        private IFileParser FileType(string fileType, string path)
+        {
             switch (fileType)
             {
                 case "json":
-                    file = new JsonFileParser(path);
-                    break;
+                    return new JsonFileParser(path);
 
                 case "xml":
-                    file = new XmlFileParser(path);
-                    break;
+                    return new XmlFileParser(path);
 
                 default:
-                    break;
-            }
-
-            switch (method)
-            {
-                case "value-gt":
-                    break;
-
-                case "value-st":
-                    break;
-
-                case "value=":
-                    break;
-
-                default:
-                    break;
+                    throw new InvalidOperationException();
             }
         }
     }

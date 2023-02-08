@@ -62,7 +62,8 @@ namespace FileAnalyzer
                 }
             }
 
-            return json.SelectTokens(builder).Select(t => t.ToString()).ToList();
+
+            return json.SelectTokens(path).Select(t => t.ToString()).ToList();
 
         }
 

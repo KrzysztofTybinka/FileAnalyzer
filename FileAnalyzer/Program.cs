@@ -9,7 +9,7 @@
 
             //var chuj = new XmlFileParser(xmlPath);
             var chujek = new JsonFileParser(jsonPath);
-            chujek.ParseFile("employees");
+            chujek.ParseFile<string>("employees[*].firstName");
         }
     }
 }
