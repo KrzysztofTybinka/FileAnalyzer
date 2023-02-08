@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace FileAnalyzer
 {
-    internal class FileService
+    public class FileService
     {
+        private IFileParser _fileParser;
+
+        public FileService(IFileParser fileParser)
+        {
+            _fileParser = fileParser;
+        }
     }
 }

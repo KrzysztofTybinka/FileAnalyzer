@@ -42,7 +42,7 @@ namespace FileAnalyzer
             var attributes = path.Split('.');
             string builder = "";
 
-            var x = json.SelectTokens("$.?@.age > 30");
+            var x = json.SelectTokens("$[]");
 
             for (int i = 0; i < attributes.Length; i++)
             {
