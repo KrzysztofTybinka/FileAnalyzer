@@ -16,16 +16,33 @@ namespace FileAnalyzer
             _fileParser = fileParser;
         }
 
-        public List<int> ValueGreaterThan(string attribute)
+        public List<string> ValueGreaterThan(string attribute, string value)
         {
             List<int> list = _fileParser.ParseFile(attribute).Cast<int>().ToList();
+            int parameter = int.Parse(value);
 
-            list = list.Select()
+            return list.Where(x => x > parameter)
+                .Cast<string>()
+                .ToList();
         }
 
-        private List<T> ValuesToList<T>(string attribute)
+        public List<string> ValueSmallerThan(string attribute, string value)
         {
-            throw new NotImplementedException();
+            List<int> list = _fileParser.ParseFile(attribute).Cast<int>().ToList();
+            int parameter = int.Parse(value);
+
+            return list.Where(x => x < parameter)
+                .Cast<string>()
+                .ToList();
         }
+
+        public List<string> ValueEquals(string attribute, string value)
+        {
+            List<string> list = _fileParser.ParseFile(attribute);
+
+            return list.Where((x) => x.Equals(value))
+                .ToList();
+        }
+
     }
 }

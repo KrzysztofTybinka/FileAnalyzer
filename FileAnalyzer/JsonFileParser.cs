@@ -36,10 +36,9 @@ namespace FileAnalyzer
             }
         }
 
-        public List<string> ParseFile(string path)
+        public List<string> ParseFile(string attribute)
         {
             JObject json = JObject.Parse(_content);
-            var attributes = path.Split('.');
             string builder = "";
 
             var x = json.SelectTokens("$[]");

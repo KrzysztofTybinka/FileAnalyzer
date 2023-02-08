@@ -12,25 +12,26 @@ namespace FileAnalyzer
         public void Interpret(string input)
         {
             string[] args = input.Split(' ');
-            string method = args[0];
-            string value = args[1];
-            string path = args[2];
+            string attribute = args[0];
+            string method = args[1];
+            string value = args[2];
+            string path = args[3];
             string fileType = path.Split('.').Last();
             IFileParser file = FileType(fileType, path);
 
             FileService service = new FileService(file);
 
-            if (method.EndsWith("-gt"))
+            if (method == "-gt")
             {
-
+                service.ValueGreaterThan(attribute, value);
             }
-            else if (method.EndsWith("-st"))
+            else if (method == "-st")
             {
-
+                service.ValueSmallerThan(attribute, value);
             }
-            else if (method.EndsWith("="))
+            else if (method == "=")
             {
-
+                service.ValueEquals(attribute, value);
             }
             else
             {
