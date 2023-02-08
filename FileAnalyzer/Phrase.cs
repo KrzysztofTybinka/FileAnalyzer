@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FileAnalyzer
 {
-    internal class Interpreter
+    internal class Phrase
     {
     }
 }
