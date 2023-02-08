@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
@@ -9,7 +10,7 @@ namespace FileAnalyzer
 {
     public class Phrase
     {
-        public void Interpret(string input)
+        public List<string> Interpret(string input)
         {
             string[] args = input.Split(' ');
             string attribute = args[0];
@@ -17,29 +18,32 @@ namespace FileAnalyzer
             string value = args[2];
             string path = args[3];
             string fileType = path.Split('.').Last();
-            IFileParser file = FileType(fileType, path);
-
+            IFileParser file = GetParser(fileType, path);
             FileService service = new FileService(file);
 
-            if (method == "-gt")
+            return Call(attribute, method, value, service);
+
+        }
+
+        private List<string> Call(string attribute, string method, string value, FileService service)
+        {
+            switch (method)
             {
-                service.ValueGreaterThan(attribute, value);
-            }
-            else if (method == "-st")
-            {
-                service.ValueSmallerThan(attribute, value);
-            }
-            else if (method == "=")
-            {
-                service.ValueEquals(attribute, value);
-            }
-            else
-            {
-                throw new InvalidOperationException();
+                case "-gt":
+                    return service.ValueGreaterThan(attribute, value);
+
+                case "-st":
+                    return service.ValueSmallerThan(attribute, value);
+
+                case "=":
+                    return service.ValueEquals(attribute, value);
+
+                default:
+                    throw new InvalidOperationException();
             }
         }
 
-        private IFileParser FileType(string fileType, string path)
+        private IFileParser GetParser(string fileType, string path)
         {
             switch (fileType)
             {
