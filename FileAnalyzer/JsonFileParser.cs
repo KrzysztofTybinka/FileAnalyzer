@@ -55,27 +55,17 @@ namespace FileAnalyzer
         public List<string> ParseFile(string attribute)
         {
             JObject json = JObject.Parse(_content);
-            string path = "$" + attribute;
-
-            var obj = json.Count;
 
 
+            List<string?> names = json.Properties()
+                .Descendants()
+                .OfType<JProperty>()
+                .Where(x => x.Name == attribute)
+                .Values<string>()
+                .ToList();
 
 
-            var tokens = json.SelectTokens("$..........employees");
-            
-            
-            if (tokens.Count() == 0)
-            {
-                path = "$." + attribute;
-            }
-            tokens = json.SelectTokens(path);
-
-
-
-
-
-            return json.SelectTokens(path).Select(t => t.ToString()).ToList();
+            return names;
         }
 
     }
