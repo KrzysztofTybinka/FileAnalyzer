@@ -38,38 +38,33 @@ namespace FileAnalyzer
 
         public List<string> ParseFile(string attribute)
         {
-            throw new NotImplementedException();
+            JObject json = JObject.Parse(_content);
+            string builder = "";
+
+            var x = json.SelectTokens("$[]");
+
+            for (int i = 0; i < attributes.Length; i++)
+            {
+                JToken? token = (json.SelectToken(attributes[i]));
+
+                if (token is null)
+                {
+                    throw new NullReferenceException();
+                }
+                if (token is JArray)
+                {
+                    builder += attributes[i] + "[*]";
+                }
+                if (token is JObject)
+                {
+                    builder += attributes[i];
+                }
+            }
+
+
+            return json.SelectTokens(path).Select(t => t.ToString()).ToList();
+
         }
-
-        //public List<string> ParseFile(string attribute)
-        //{
-        //    JObject json = JObject.Parse(_content);
-        //    string builder = "";
-
-        //    var x = json.SelectTokens("$[]");
-
-        //    for (int i = 0; i < attributes.Length; i++)
-        //    {
-        //        JToken? token = (json.SelectToken(attributes[i]));
-
-        //        if (token is null)
-        //        {
-        //            throw new NullReferenceException();
-        //        }
-        //        if (token is JArray)
-        //        {
-        //            builder += attributes[i] + "[*]";
-        //        }
-        //        if (token is JObject)
-        //        {
-        //            builder += attributes[i];
-        //        }
-        //    }
-
-
-        //    return json.SelectTokens(path).Select(t => t.ToString()).ToList();
-
-        //}
 
     }
 }
