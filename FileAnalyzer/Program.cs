@@ -16,7 +16,7 @@
                 "Available methods:\n" +
                 "-gt - greater than, prints all attribute values that are greater than given value.\n" +
                 "-st - smaller than, prints all attribute values that are smaller than given value.\n" +
-                "= - equals, prints all attribute values that are equal to given value.\n\n" +
+                "-pt - prints list of attribute values with length specified by the value (for all input 0).\n\n" +
                 "Supported file types - json, xml\n" +
                 "─────────────────────────────────────────────────────────────────\n\n");
 
@@ -24,7 +24,7 @@
             {
                 try
                 {
-                    Console.WriteLine("Input data in format: attribute method value path\nTo escape press enter.");
+                    Console.WriteLine("Input data in format: attribute -method value path\nTo escape press enter.");
                     string? input = Console.ReadLine();
 
                     if (String.IsNullOrEmpty(input))

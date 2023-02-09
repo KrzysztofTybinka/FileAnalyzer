@@ -60,8 +60,8 @@ namespace FileAnalyzer
                 case "-st":
                     return service.ValueSmallerThan(attribute, value);
 
-                case "=":
-                    return service.ValueEquals(attribute, value);
+                case "-pt":
+                    return service.PrintValues(attribute, value);
 
                 default:
                     throw new InvalidOperationException();

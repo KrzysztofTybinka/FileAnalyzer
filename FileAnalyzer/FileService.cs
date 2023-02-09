@@ -62,11 +62,17 @@ namespace FileAnalyzer
         /// <param name="attribute"></param>
         /// <param name="value"></param>
         /// <returns>List of values equal to given value parameter.</returns>
-        public List<string?> ValueEquals(string attribute, string value)
+        public List<string?> PrintValues(string attribute, string value)
         {
-            List<string?> list = _fileParser.ParseFile(attribute);
+            int parameter = int.Parse(value);
 
-            return list.Where((x) => x.Equals(value))
+            if(parameter == 0)
+            {
+                return _fileParser.ParseFile(attribute);
+            }
+
+            return _fileParser.ParseFile(attribute)
+                .Take(parameter)
                 .ToList();
         }
 
