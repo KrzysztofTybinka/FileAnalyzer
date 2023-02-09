@@ -26,28 +26,29 @@
                 "Supported file types - json, xml\n" +
                 "─────────────────────────────────────────────────────────────────\n\n");
 
-            try
+            while (true)
             {
-                while (true)
+                try
                 {
                     Console.WriteLine("Input data in format: attribute method value path\nTo escape press enter.");
                     string? input = Console.ReadLine();
 
-                    if (String.IsNullOrEmpty(input) )
+                    if (String.IsNullOrEmpty(input))
                     {
                         Environment.Exit(0);
                     }
 
-                    Phrase phrase= new Phrase();
+                    Phrase phrase = new Phrase();
                     phrase.Interpret(input).ForEach(x => Console.WriteLine(x));
 
                     Console.WriteLine();
                 }
+                catch (Exception)
+                {
+                    Console.WriteLine("Invalid input formatn try again.\n");
+                }
             }
-            catch (Exception)
-            {
-                Console.WriteLine("Invalid input format. Try again.");
-            }
+
         }
     }
 }

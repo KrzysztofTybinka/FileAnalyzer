@@ -51,17 +51,21 @@ namespace FileAnalyzer
         /// <param name="attribute"></param>
         /// <returns>List of strings containing searched value attributes.</returns>
         /// <exception cref="NullReferenceException"></exception>
-        public List<string> ParseFile(string attribute)
+        public List<string?> ParseFile(string attribute)
         {
             XDocument xmlDoc = XDocument.Parse(_content);
-            List<string> list = new List<string>();
+            List<string?> list = new List<string?>();
             IEnumerable<XElement> xElements = xmlDoc.Descendants(attribute);
 
-            foreach (var item in xElements)
+            foreach (XElement? item in xElements)
             {
                 list.Add(item.Value);
             }
 
+            if (list.Count == 0)
+            {
+                throw new KeyNotFoundException();
+            }
             return list;
         }
     }

@@ -26,13 +26,13 @@ namespace FileAnalyzer
         /// <param name="attribute"></param>
         /// <param name="value"></param>
         /// <returns>List of numbers greater than given value.</returns>
-        public List<string> ValueGreaterThan(string attribute, string value)
+        public List<string?> ValueGreaterThan(string attribute, string value)
         {
             List<int> list = _fileParser.ParseFile(attribute).Cast<int>().ToList();
             int parameter = int.Parse(value);
 
             return list.Where(x => x > parameter)
-                .Cast<string>()
+                .Cast<string?>()
                 .ToList();
         }
 
@@ -42,13 +42,13 @@ namespace FileAnalyzer
         /// <param name="attribute"></param>
         /// <param name="value"></param>
         /// <returns>List of numbers smaller than given value.</returns>
-        public List<string> ValueSmallerThan(string attribute, string value)
+        public List<string?> ValueSmallerThan(string attribute, string value)
         {
             List<int> list = _fileParser.ParseFile(attribute).Cast<int>().ToList();
             int parameter = int.Parse(value);
 
             return list.Where(x => x < parameter)
-                .Cast<string>()
+                .Cast<string?>()
                 .ToList();
         }
 
@@ -58,9 +58,9 @@ namespace FileAnalyzer
         /// <param name="attribute"></param>
         /// <param name="value"></param>
         /// <returns>List of values equal to given value parameter.</returns>
-        public List<string> ValueEquals(string attribute, string value)
+        public List<string?> ValueEquals(string attribute, string value)
         {
-            List<string> list = _fileParser.ParseFile(attribute);
+            List<string?> list = _fileParser.ParseFile(attribute);
 
             return list.Where((x) => x.Equals(value))
                 .ToList();

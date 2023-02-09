@@ -23,6 +23,6 @@ namespace FileAnalyzer
         /// </summary>
         /// <param name="attribute"></param>
         /// <returns>List with parsed attribute values.</returns>
-        public List<string> ParseFile(string attribute);
+        public List<string?> ParseFile(string attribute);
     }
 }

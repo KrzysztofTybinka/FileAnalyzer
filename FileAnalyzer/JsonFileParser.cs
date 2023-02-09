@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
@@ -52,20 +53,22 @@ namespace FileAnalyzer
         /// <param name="attribute"></param>
         /// <returns>List of strings containing searched value attributes.</returns>
         /// <exception cref="NullReferenceException"></exception>
-        public List<string> ParseFile(string attribute)
+        public List<string?> ParseFile(string attribute)
         {
             JObject json = JObject.Parse(_content);
 
-
-            List<string?> names = json.Properties()
+            List<string?> list = json.Properties()
                 .Descendants()
                 .OfType<JProperty>()
                 .Where(x => x.Name == attribute)
-                .Values<string>()
+                .Values<string?>()
                 .ToList();
 
-
-            return names;
+            if (list.Count == 0)
+            {
+                throw new KeyNotFoundException();
+            }
+            return list;
         }
 
     }
