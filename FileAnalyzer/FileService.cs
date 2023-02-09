@@ -28,12 +28,15 @@ namespace FileAnalyzer
         /// <returns>List of numbers greater than given value.</returns>
         public List<string?> ValueGreaterThan(string attribute, string value)
         {
-            List<int> list = _fileParser.ParseFile(attribute).Cast<int>().ToList();
             int parameter = int.Parse(value);
 
-            return list.Where(x => x > parameter)
-                .Cast<string?>()
-                .ToList();
+            return _fileParser
+                .ParseFile(attribute)
+                .Where(x => x != null)
+                .Select(s => Int32.TryParse(s, out int n) ? n : (int?)null)
+                .Where(x => x > parameter)
+                .ToList()
+                .ConvertAll(x => x.ToString());
         }
 
         /// <summary>
@@ -44,12 +47,15 @@ namespace FileAnalyzer
         /// <returns>List of numbers smaller than given value.</returns>
         public List<string?> ValueSmallerThan(string attribute, string value)
         {
-            List<int> list = _fileParser.ParseFile(attribute).Cast<int>().ToList();
             int parameter = int.Parse(value);
 
-            return list.Where(x => x < parameter)
-                .Cast<string?>()
-                .ToList();
+            return _fileParser
+                .ParseFile(attribute)
+                .Where(x => x != null)
+                .Select(s => Int32.TryParse(s, out int n) ? n : (int?)null)
+                .Where(x => x < parameter)
+                .ToList()
+                .ConvertAll(x => x.ToString());
         }
 
         /// <summary>

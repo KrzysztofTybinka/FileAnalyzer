@@ -33,7 +33,7 @@
                     }
 
                     Phrase phrase = new Phrase();
-                    phrase.Interpret(input).ForEach(x => Console.WriteLine(x));
+                    phrase.Interpret(input).ForEach(x => Console.Write(x + " "));
 
                     Console.WriteLine();
                 }
