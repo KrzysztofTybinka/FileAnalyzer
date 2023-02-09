@@ -7,12 +7,6 @@
             string xmlPath = "C:\\Users\\krzys\\OneDrive\\Pulpit\\employees.xml";
             string jsonPath = "C:\\Users\\krzys\\OneDrive\\Pulpit\\employees.json";
 
-            //var chuj = new XmlFileParser(xmlPath);
-            var chujek = new JsonFileParser(jsonPath);
-            chujek.ParseFile("Street");
-
-
-
             Console.WriteLine("File Analyzer is a command-line interface application that provides \n" +
                 "methods to analyze data files using different functions given by the user. \n" +
                 "User inputs data in format: attribute method value path\n\n" +
@@ -43,9 +37,21 @@
 
                     Console.WriteLine();
                 }
+                catch (FileNotFoundException)
+                {
+                    Console.WriteLine("File not found, try again.\n");
+                }
+                catch(KeyNotFoundException)
+                {
+                    Console.WriteLine("Incorrect atribute name, try again.\n");
+                }
+                catch(FileLoadException)
+                {
+                    Console.WriteLine("File type not supported, try again with different file type.\n");
+                }
                 catch (Exception)
                 {
-                    Console.WriteLine("Invalid input formatn try again.\n");
+                    Console.WriteLine("Invalid input format, try again.\n");
                 }
             }
 

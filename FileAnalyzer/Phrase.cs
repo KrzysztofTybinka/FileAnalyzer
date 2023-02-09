@@ -20,7 +20,7 @@ namespace FileAnalyzer
         /// <param name="input"></param>
         /// <returns></returns>
         /// <exception cref="InvalidOperationException"></exception>
-        public List<string> Interpret(string input)
+        public List<string?> Interpret(string input)
         {
             try
             {
@@ -50,7 +50,7 @@ namespace FileAnalyzer
         /// <param name="service"></param>
         /// <returns>List containing string representation of objects obtained by input function.</returns>
         /// <exception cref="InvalidOperationException"></exception>
-        private List<string> Call(string attribute, string method, string value, FileService service)
+        private List<string?> Call(string attribute, string method, string value, FileService service)
         {
             switch (method)
             {
@@ -86,7 +86,7 @@ namespace FileAnalyzer
                     return new XmlFileParser(path);
 
                 default:
-                    throw new InvalidOperationException();
+                    throw new FileLoadException();
             }
         }
     }
