@@ -33,9 +33,10 @@
                     }
 
                     Phrase phrase = new Phrase();
+                    Console.WriteLine();
                     phrase.Interpret(input).ForEach(x => Console.Write(x + " "));
 
-                    Console.WriteLine();
+                    Console.WriteLine("\n");
                 }
                 catch (FileNotFoundException)
                 {

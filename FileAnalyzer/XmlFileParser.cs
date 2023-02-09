@@ -54,13 +54,10 @@ namespace FileAnalyzer
         public List<string?> ParseFile(string attribute)
         {
             XDocument xmlDoc = XDocument.Parse(_content);
-            List<string?> list = new List<string?>();
-            IEnumerable<XElement> xElements = xmlDoc.Descendants(attribute);
 
-            foreach (XElement? item in xElements)
-            {
-                list.Add(item.Value);
-            }
+            List<string?> list = xmlDoc.Descendants(attribute)
+                .Select(x => x.Value ?? null)
+                .ToList();
 
             if (list.Count == 0)
             {

@@ -32,7 +32,6 @@ namespace FileAnalyzer
 
             return _fileParser
                 .ParseFile(attribute)
-                .Where(x => x != null)
                 .Select(s => Int32.TryParse(s, out int n) ? n : (int?)null)
                 .Where(x => x > parameter)
                 .ToList()
@@ -51,7 +50,6 @@ namespace FileAnalyzer
 
             return _fileParser
                 .ParseFile(attribute)
-                .Where(x => x != null)
                 .Select(s => Int32.TryParse(s, out int n) ? n : (int?)null)
                 .Where(x => x < parameter)
                 .ToList()
