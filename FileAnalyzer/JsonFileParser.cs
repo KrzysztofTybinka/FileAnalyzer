@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace FileAnalyzer
 {
+    /// <summary>
+    /// Provides methods for parsing json file.
+    /// </summary>
     public class JsonFileParser : IFileParser
     {
         private readonly string _content;
@@ -18,6 +21,12 @@ namespace FileAnalyzer
             _content = GetFile(path);
         }
 
+        /// <summary>
+        /// Gets json file from directory based on a given path.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns>String representation of json file.</returns>
+        /// <exception cref="FileNotFoundException"></exception>
         public string GetFile(string path)
         {
             try
@@ -36,34 +45,37 @@ namespace FileAnalyzer
             }
         }
 
+        /// <summary>
+        /// Iterates trough json attributes, finds searched attribute
+        /// and parses its values into a list of strings.
+        /// </summary>
+        /// <param name="attribute"></param>
+        /// <returns>List of strings containing searched value attributes.</returns>
+        /// <exception cref="NullReferenceException"></exception>
         public List<string> ParseFile(string attribute)
         {
             JObject json = JObject.Parse(_content);
-            string builder = "";
+            string path = "$" + attribute;
 
-            var x = json.SelectTokens("$[]");
+            var obj = json.Count;
 
-            for (int i = 0; i < attributes.Length; i++)
+
+
+
+            var tokens = json.SelectTokens("$..........employees");
+            
+            
+            if (tokens.Count() == 0)
             {
-                JToken? token = (json.SelectToken(attributes[i]));
-
-                if (token is null)
-                {
-                    throw new NullReferenceException();
-                }
-                if (token is JArray)
-                {
-                    builder += attributes[i] + "[*]";
-                }
-                if (token is JObject)
-                {
-                    builder += attributes[i];
-                }
+                path = "$." + attribute;
             }
+            tokens = json.SelectTokens(path);
+
+
+
 
 
             return json.SelectTokens(path).Select(t => t.ToString()).ToList();
-
         }
 
     }
