@@ -4,12 +4,9 @@
     {
         static void Main(string[] args)
         {
-            string xmlPath = "C:\\Users\\krzys\\OneDrive\\Pulpit\\employees.xml";
-            string jsonPath = "C:\\Users\\krzys\\OneDrive\\Pulpit\\employees.json";
-
             Console.WriteLine("File Analyzer is a command-line interface application that provides \n" +
                 "methods to analyze data files using different functions given by the user. \n" +
-                "User inputs data in format: attribute method value path\n\n" +
+                "User inputs data in format: attribute -method value path\n\n" +
                 "Where:\n- attribute is file attribute user wants to perform function on.\n" +
                 "- method is one of the available methods to perform with given attribute.\n" +
                 "- value is method argument.\n-path is a file path.\n\n" +
