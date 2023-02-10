@@ -77,3 +77,4 @@ extend and add new functionalities for data filtering and other file types.
 # Contributing
 If you wish to contribute to this project, please feel free to create a pull request with your changes.
 # License
+This project is licensed under the MIT License - see the LICENSE file for details.
