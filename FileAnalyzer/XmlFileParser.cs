@@ -17,32 +17,11 @@ namespace FileAnalyzer
     {
         private readonly string _content;
 
-        public XmlFileParser(string path)
+        public XmlFileParser(string content)
         {
-            _content = GetFile(path);
+            _content = content;
         }
 
-        /// <summary>
-        /// Gets xml file from directory based on a given path.
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns>String representation of xml file.</returns>
-        /// <exception cref="FileNotFoundException"></exception>
-        public string GetFile(string path)
-        {
-            try
-            {
-                XmlDocument xmlDoc = new XmlDocument();
-                xmlDoc.Load(path);
-                string xmlString = xmlDoc.OuterXml;
-
-                return xmlString;
-            }
-            catch (Exception)
-            {
-                throw new FileNotFoundException(path);
-            }
-        }
 
         /// <summary>
         /// Iterates trough xml attributes, finds searched attribute

@@ -25,15 +25,17 @@ namespace FileAnalyzer
             try
             {
                 string[] args = input.Split(' ');
-                string attribute = args[0];
+                string key = args[0];
                 string method = args[1];
                 string value = args[2];
                 string path = args[3];
                 string fileType = path.Split('.').Last();
-                IFileParser file = GetParser(fileType, path);
+                string content = FileDownloader.GetContent(path);
+
+                IFileParser file = GetParser(fileType, content);
                 FileService service = new FileService(file);
 
-                return Call(attribute, method, value, service);
+                return Call(key, method, value, service);
             }
             catch (Exception)
             {
@@ -44,24 +46,24 @@ namespace FileAnalyzer
         /// <summary>
         /// Calls proper method based on given function name.
         /// </summary>
-        /// <param name="attribute"></param>
+        /// <param name="key"></param>
         /// <param name="method"></param>
         /// <param name="value"></param>
         /// <param name="service"></param>
         /// <returns>List containing string representation of objects obtained by input function.</returns>
         /// <exception cref="InvalidOperationException"></exception>
-        private List<string?> Call(string attribute, string method, string value, FileService service)
+        private List<string?> Call(string key, string method, string value, FileService service)
         {
             switch (method)
             {
                 case "-gt":
-                    return service.ValueGreaterThan(attribute, value);
+                    return service.ValueGreaterThan(key, value);
 
                 case "-st":
-                    return service.ValueSmallerThan(attribute, value);
+                    return service.ValueSmallerThan(key, value);
 
                 case "-pt":
-                    return service.PrintValues(attribute, value);
+                    return service.PrintValues(key, value);
 
                 default:
                     throw new InvalidOperationException();
@@ -75,15 +77,15 @@ namespace FileAnalyzer
         /// <param name="path"></param>
         /// <returns>IFileParser.</returns>
         /// <exception cref="InvalidOperationException"></exception>
-        private IFileParser GetParser(string fileType, string path)
+        private IFileParser GetParser(string fileType, string content)
         {
             switch (fileType)
             {
                 case "json":
-                    return new JsonFileParser(path);
+                    return new JsonFileParser(content);
 
                 case "xml":
-                    return new XmlFileParser(path);
+                    return new XmlFileParser(content);
 
                 default:
                     throw new FileLoadException();

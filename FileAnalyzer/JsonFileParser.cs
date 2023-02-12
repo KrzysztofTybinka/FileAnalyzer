@@ -17,34 +17,11 @@ namespace FileAnalyzer
     {
         private readonly string _content;
 
-        public JsonFileParser(string path)
+        public JsonFileParser(string content)
         {
-            _content = GetFile(path);
+            _content = content;
         }
 
-        /// <summary>
-        /// Gets json file from directory based on a given path.
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns>String representation of json file.</returns>
-        /// <exception cref="FileNotFoundException"></exception>
-        public string GetFile(string path)
-        {
-            try
-            {
-                string jsonString;
-                using (StreamReader reader = new StreamReader(path))
-                {
-                    jsonString = reader.ReadToEnd();
-                }
-
-                return jsonString;
-            }
-            catch (Exception)
-            {
-                throw new FileNotFoundException(path);
-            }
-        }
 
         /// <summary>
         /// Iterates trough json attributes, finds searched attribute
