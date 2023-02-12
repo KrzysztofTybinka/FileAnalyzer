@@ -72,7 +72,7 @@ FileService class methods use LINQ, to select the desired values from the data s
 
 The application has been developed adhering to SOLID, software design principles, allowing for modular and flexible design with the ability to easily 
 extend and add new functionalities for data filtering and other file types.
-###Unit Testing
+### Unit Testing
 This project includes unit tests written using the xUnit testing library to verify the behavior of the FileParser and FileService classes. The tests ensure that the ParseFile method of the FileParser class returns the correct list of values for a given key, and that the methods of the FileService class filters data correctly.
 
 The unit tests can be run using a test runner or from the command line, and are located in the FileAnalyzerTests folder. The test classes use a naming convention of [ClassUnderTest]Tests to indicate which class is being tested, and each test method uses a naming convention of MethodName_Scenario_ExpectedBehavior to describe what is being tested.
