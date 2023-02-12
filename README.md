@@ -52,14 +52,13 @@ age -gt 30 C:\Path\File.json
 Returns list of all ages from File.json file that are greater than 30.
 ### Code
 The application operates as follows: the user inputs the data in the correct format, which is then processed 
-by a Phrase object. The methods within the Phrase object interpret the user input and determine the appropriate 
+by a Phrase object. The methods within the Phrase object get the file content, interpret the user input and determine the appropriate 
 FileParser object to be instantiated. The resulting FileParser object is then passed as a parameter to the FileService 
-object, which invokes methods on the FileParser object to extract the desired data from the file. The extracted data 
-is then filtered by methods within the FileService object according to specified parameters, resulting in a list that 
-is subsequently output to the console. This pipeline of object interactions and method invocations enables the application 
+object. The extracted data within the FileParser object is then filtered by methods within the FileService object according to specified parameters, 
+resulting in a list that is subsequently output to the console. This pipeline of object interactions and method invocations enables the application 
 to efficiently and accurately process user input and produce the desired output.
 
-![This is an image](https://imagizer.imageshack.com/img922/5268/KKWE3i.jpg)
+![This is an image](https://imagizer.imageshack.com/img923/9422/I6bNik.jpg)
 
 
 The problem of extracting nested keys from JSON and XML files has been resolved through the utilization of LINQ query capabilities. 
