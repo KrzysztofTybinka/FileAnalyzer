@@ -23,6 +23,26 @@ namespace FileAnalyzerTests
                     city => Assert.Equal("Anotherplace", city),
                     city => Assert.Equal("Nowhere", city));
             }
+
+            [Fact]
+            public void ParseFile_ReturnsListOfStreet_WhenGivenStreetKey()
+            {
+                // Arrange
+                string jsonString = Resources.GetJsonString();
+                JsonFileParser parser = new JsonFileParser(jsonString);
+
+                // Act
+                List<string?> cities = parser.ParseFile("street");
+
+                // Assert
+                Assert.Collection(cities,
+                    city => Assert.Equal("123 Main St", city),
+                    city => Assert.Equal("456 Oak Ave", city),
+                    city => Assert.Equal("789 Elm St", city),
+                    city => Assert.Equal("321 Maple St", city));
+            }
         }
+
+
     }
 }
