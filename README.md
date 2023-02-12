@@ -52,8 +52,7 @@ age -gt 30 C:\Path\File.json
 Returns list of all ages from File.json file that are greater than 30.
 ### Code
 The application operates as follows: the user inputs the data in the correct format, which is then processed 
-by a Phrase object. The methods within the Phrase object get the file content, interpret the user input and determine the appropriate 
-FileParser object to be instantiated. The resulting FileParser object is then passed as a parameter to the FileService 
+by a Phrase object. The methods within the Phrase object get the file content from FileDownloader static class, interpret the user input and determine the appropriate FileParser object to be instantiated. The resulting FileParser object is then passed as a parameter to the FileService 
 object. The extracted data within the FileParser object is then filtered by methods within the FileService object according to specified parameters, 
 resulting in a list that is subsequently output to the console. This pipeline of object interactions and method invocations enables the application 
 to efficiently and accurately process user input and produce the desired output.
