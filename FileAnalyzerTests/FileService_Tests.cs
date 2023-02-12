@@ -43,8 +43,25 @@ namespace FileAnalyzerTests
 
 
         [Fact]
+        public void PrintValues_ReturnsListWithLength4_WhenGivenStreetKeyAndValues_0()
+        {
+            // Arrange
+            string xmlString = Resources.GetXmlString();
+            XmlFileParser parser = new XmlFileParser(xmlString);
+            FileService fileService = new FileService(parser);
+
+            // Act
+            List<string?> list = fileService.PrintValues("street", "0");
+
+            // Assert
+            Assert.Equal(4, list.Count);
+        }
+
+
+        [Fact]
         public void PrintValues_ReturnsEmptyList_WhenGivenNonExistingKey()
         {
+            // Arrange
             string jsonString = Resources.GetJsonString();
             JsonFileParser parser = new JsonFileParser(jsonString);
             FileService fileService = new FileService(parser);
