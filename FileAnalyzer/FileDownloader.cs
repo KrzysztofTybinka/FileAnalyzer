@@ -10,7 +10,7 @@ namespace FileAnalyzer
     /// Provides methods for 
     /// downloading file content.
     /// </summary>
-    public class FileDownloader
+    public static class FileDownloader
     {
         /// <summary>
         /// Gets string representation of file content.
@@ -18,7 +18,7 @@ namespace FileAnalyzer
         /// <param name="input"></param>
         /// <returns>String representation of file content.</returns>
         /// <exception cref="InvalidOperationException"></exception>
-        public string GetContent(string input)
+        public static string GetContent(string input)
         {
             if (IsUrl(input))
             {
@@ -40,7 +40,7 @@ namespace FileAnalyzer
         /// <param name="input"></param>
         /// <returns>True if input walue is url, otherwise false.</returns>
         /// <exception cref="NullReferenceException"></exception>
-        private bool IsUrl(string input)
+        private static bool IsUrl(string input)
         {
             return Uri.TryCreate(input, UriKind.Absolute, out Uri? uriResult)
                 && (uriResult.Scheme == (Uri.UriSchemeHttp ?? throw new NullReferenceException())
@@ -53,7 +53,7 @@ namespace FileAnalyzer
         /// </summary>
         /// <param name="input"></param>
         /// <returns>True if input is valid, otherwise false.</returns>
-        private bool IsValidPath(string input)
+        private static bool IsValidPath(string input)
         {
             return File.Exists(input);
         }
@@ -63,7 +63,7 @@ namespace FileAnalyzer
         /// </summary>
         /// <param name="url"></param>
         /// <returns>File content as a string.</returns>
-        private async Task<string> DownloadFromUrl(string url)
+        private static async Task<string> DownloadFromUrl(string url)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -76,7 +76,7 @@ namespace FileAnalyzer
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns>File content as a string.</returns>
-        private string DownloadFromDir(string filePath)
+        private static string DownloadFromDir(string filePath)
         {
             return File.ReadAllText(filePath);
         }
