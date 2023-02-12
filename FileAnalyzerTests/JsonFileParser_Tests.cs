@@ -41,6 +41,16 @@ namespace FileAnalyzerTests
                     city => Assert.Equal("789 Elm St", city),
                     city => Assert.Equal("321 Maple St", city));
             }
+
+            [Fact]
+            public void ParseFile_ReturnsEmptyList_WhenGivenSurnameKey()
+            {
+                // Arrange
+                string jsonString = Resources.GetJsonString();
+                JsonFileParser parser = new JsonFileParser(jsonString);
+
+                Assert.Throws<KeyNotFoundException>(() => parser.ParseFile("surname"));
+            }
         }
 
 
