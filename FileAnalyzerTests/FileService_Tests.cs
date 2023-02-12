@@ -25,5 +25,32 @@ namespace FileAnalyzerTests
                 city => Assert.Equal("Anytown", city),
                 city => Assert.Equal("Someplace", city));           
         }
+
+        [Fact]
+        public void PrintValues_ReturnsListWithLength3_WhenGivenCityKeyAndValues_3()
+        {
+            // Arrange
+            string jsonString = Resources.GetJsonString();
+            JsonFileParser parser = new JsonFileParser(jsonString);
+            FileService fileService = new FileService(parser);
+
+            // Act
+            List<string?> list = fileService.PrintValues("city", "3");
+
+            // Assert
+            Assert.Equal(3, list.Count);
+        }
+
+
+        [Fact]
+        public void PrintValues_ReturnsEmptyList_WhenGivenNonExistingKey()
+        {
+            string jsonString = Resources.GetJsonString();
+            JsonFileParser parser = new JsonFileParser(jsonString);
+            FileService fileService = new FileService(parser);
+
+            // Assert
+            Assert.Throws<KeyNotFoundException>(() => parser.ParseFile("nonexisting"));
+        }
     }
 }

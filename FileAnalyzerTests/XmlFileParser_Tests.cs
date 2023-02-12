@@ -29,7 +29,7 @@ namespace FileAnalyzerTests
 
 
         [Fact]
-        public void ParseFile_ReturnsListOfStreet_WhenGivenStreetKey()
+        public void ParseFile_ReturnsListOfStreet_WhenGivenKeyToAnObjct()
         {
             // Arrange
             string xmlString = Resources.GetXmlString();
@@ -48,7 +48,7 @@ namespace FileAnalyzerTests
 
 
         [Fact]
-        public void ParseFile_ThrowsKeyNotFoundException_WhenGivenSurnameKey()
+        public void ParseFile_ThrowsKeyNotFoundException_WhenGivenNonExistingKey()
         {
             // Arrange
             string xmlString = Resources.GetXmlString();

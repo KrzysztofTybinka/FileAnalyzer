@@ -45,7 +45,7 @@ namespace FileAnalyzerTests
 
 
             [Fact]
-            public void ParseFile_ThrowsInvalidCastException_WhenGivenPeopleKey()
+            public void ParseFile_ThrowsInvalidCastException_WhenGivenKeyToAnObject()
             {
                 // Arrange
                 string jsonString = Resources.GetJsonString();
@@ -57,7 +57,7 @@ namespace FileAnalyzerTests
 
 
             [Fact]
-            public void ParseFile_ThrowsKeyNotFoundException_WhenGivenSurnameKey()
+            public void ParseFile_ThrowsKeyNotFoundException_WhenGivenNonExistingKey()
             {
                 // Arrange
                 string jsonString = Resources.GetJsonString();
