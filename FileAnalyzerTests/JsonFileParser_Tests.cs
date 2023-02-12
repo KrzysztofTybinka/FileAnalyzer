@@ -11,7 +11,7 @@ namespace FileAnalyzerTests
             {
                 // Arrange
                 string jsonString = Resources.GetJsonString();
-                JsonFileParser parser = new JsonFileParser(jsonString);
+                XmlFIleParser parser = new XmlFIleParser(jsonString);
 
                 // Act
                 List<string?> cities = parser.ParseFile("city");
@@ -30,7 +30,7 @@ namespace FileAnalyzerTests
             {
                 // Arrange
                 string jsonString = Resources.GetJsonString();
-                JsonFileParser parser = new JsonFileParser(jsonString);
+                XmlFIleParser parser = new XmlFIleParser(jsonString);
 
                 // Act
                 List<string?> cities = parser.ParseFile("street");
@@ -49,7 +49,7 @@ namespace FileAnalyzerTests
             {
                 // Arrange
                 string jsonString = Resources.GetJsonString();
-                JsonFileParser parser = new JsonFileParser(jsonString);
+                XmlFIleParser parser = new XmlFIleParser(jsonString);
 
                 // Act & Assert
                 Assert.Throws<InvalidCastException>(() => parser.ParseFile("address"));
@@ -61,13 +61,11 @@ namespace FileAnalyzerTests
             {
                 // Arrange
                 string jsonString = Resources.GetJsonString();
-                JsonFileParser parser = new JsonFileParser(jsonString);
+                XmlFIleParser parser = new XmlFIleParser(jsonString);
 
                 // Act & Assert
                 Assert.Throws<KeyNotFoundException>(() => parser.ParseFile("surname"));
             }
         }
-
-
     }
 }

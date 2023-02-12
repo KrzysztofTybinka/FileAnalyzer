@@ -82,7 +82,7 @@ namespace FileAnalyzer
             switch (fileType)
             {
                 case "json":
-                    return new JsonFileParser(content);
+                    return new XmlFIleParser(content);
 
                 case "xml":
                     return new XmlFileParser(content);

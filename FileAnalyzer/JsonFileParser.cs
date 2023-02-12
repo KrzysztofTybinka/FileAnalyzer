@@ -13,11 +13,11 @@ namespace FileAnalyzer
     /// <summary>
     /// Provides methods for parsing json file.
     /// </summary>
-    public class JsonFileParser : IFileParser
+    public class XmlFIleParser : IFileParser
     {
         private readonly string _content;
 
-        public JsonFileParser(string content)
+        public XmlFIleParser(string content)
         {
             _content = content;
         }
