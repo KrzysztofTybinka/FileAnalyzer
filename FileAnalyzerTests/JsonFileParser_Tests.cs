@@ -24,6 +24,7 @@ namespace FileAnalyzerTests
                     city => Assert.Equal("Nowhere", city));
             }
 
+
             [Fact]
             public void ParseFile_ReturnsListOfStreet_WhenGivenStreetKey()
             {
@@ -42,13 +43,27 @@ namespace FileAnalyzerTests
                     city => Assert.Equal("321 Maple St", city));
             }
 
+
             [Fact]
-            public void ParseFile_ReturnsEmptyList_WhenGivenSurnameKey()
+            public void ParseFile_ThrowsInvalidCastException_WhenGivenPeopleKey()
             {
                 // Arrange
                 string jsonString = Resources.GetJsonString();
                 JsonFileParser parser = new JsonFileParser(jsonString);
 
+                // Act & Assert
+                Assert.Throws<InvalidCastException>(() => parser.ParseFile("address"));
+            }
+
+
+            [Fact]
+            public void ParseFile_ThrowsKeyNotFoundException_WhenGivenSurnameKey()
+            {
+                // Arrange
+                string jsonString = Resources.GetJsonString();
+                JsonFileParser parser = new JsonFileParser(jsonString);
+
+                // Act & Assert
                 Assert.Throws<KeyNotFoundException>(() => parser.ParseFile("surname"));
             }
         }
