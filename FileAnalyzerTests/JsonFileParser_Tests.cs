@@ -11,7 +11,7 @@ namespace FileAnalyzerTests
             {
                 // Arrange
                 string jsonString = Resources.GetJsonString();
-                XmlFIleParser parser = new XmlFIleParser(jsonString);
+                JsonFileParser parser = new JsonFileParser(jsonString);
 
                 // Act
                 List<string?> cities = parser.ParseFile("city");
@@ -30,17 +30,17 @@ namespace FileAnalyzerTests
             {
                 // Arrange
                 string jsonString = Resources.GetJsonString();
-                XmlFIleParser parser = new XmlFIleParser(jsonString);
+                JsonFileParser parser = new JsonFileParser(jsonString);
 
                 // Act
-                List<string?> cities = parser.ParseFile("street");
+                List<string?> streets = parser.ParseFile("street");
 
                 // Assert
-                Assert.Collection(cities,
-                    city => Assert.Equal("123 Main St", city),
-                    city => Assert.Equal("456 Oak Ave", city),
-                    city => Assert.Equal("789 Elm St", city),
-                    city => Assert.Equal("321 Maple St", city));
+                Assert.Collection(streets,
+                    street => Assert.Equal("123 Main St", street),
+                    street => Assert.Equal("456 Oak Ave", street),
+                    street => Assert.Equal("789 Elm St", street),
+                    street => Assert.Equal("321 Maple St", street));
             }
 
 
@@ -49,7 +49,7 @@ namespace FileAnalyzerTests
             {
                 // Arrange
                 string jsonString = Resources.GetJsonString();
-                XmlFIleParser parser = new XmlFIleParser(jsonString);
+                JsonFileParser parser = new JsonFileParser(jsonString);
 
                 // Act & Assert
                 Assert.Throws<InvalidCastException>(() => parser.ParseFile("address"));
@@ -61,7 +61,7 @@ namespace FileAnalyzerTests
             {
                 // Arrange
                 string jsonString = Resources.GetJsonString();
-                XmlFIleParser parser = new XmlFIleParser(jsonString);
+                JsonFileParser parser = new JsonFileParser(jsonString);
 
                 // Act & Assert
                 Assert.Throws<KeyNotFoundException>(() => parser.ParseFile("surname"));
